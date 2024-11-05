@@ -1,0 +1,5 @@
+CC=g++
+LIB_PATH="/home/mianvi/libs/boost_1_86_0"
+
+all: main.cpp
+	$(CC) -I $(LIB_PATH) main.cpp -o main
