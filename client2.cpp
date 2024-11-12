@@ -28,7 +28,6 @@ int main(int argc, char* argv[])
     {
 		std::array<char, 1> ch;
 		ch[0] = getch();
-		print(ch[0]);
 		boost::system::error_code ignored_error;
 		boost::asio::write(socket, boost::asio::buffer(ch), ignored_error);
     }

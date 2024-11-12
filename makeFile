@@ -1,11 +1,13 @@
 CC=g++
 LIB_PATH="/home/mianvi/libs/boost_1_86_0"
 
-all: main.cpp
-	$(CC) -I $(LIB_PATH) main.cpp -o main
+all: server client client2
 
 server: server.cpp
 	$(CC) -I $(LIB_PATH) server.cpp -o server
 
 client: client.cpp
 	$(CC) -I $(LIB_PATH) client.cpp -o client
+
+client2: client2.cpp
+	$(CC) -I $(LIB_PATH) -lncurses client2.cpp -o client2
