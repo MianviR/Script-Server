@@ -1,0 +1,4 @@
+/home/mianvi/projects/asioserver/build/CMakeFiles/server.dir
+/home/mianvi/projects/asioserver/build/CMakeFiles/client.dir
+/home/mianvi/projects/asioserver/build/CMakeFiles/edit_cache.dir
+/home/mianvi/projects/asioserver/build/CMakeFiles/rebuild_cache.dir
