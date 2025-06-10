@@ -1,81 +1,47 @@
-#include <ctime>
-#include <iostream>
-#include <string>
-#include <boost/asio.hpp>
-#include <array>
-#include <thread>
+#include "utils.h"
+#include "my_connection.h"
+#include <threads.h>
 
-using boost::asio::ip::tcp;
-
-std::string make_daytime_string()
+class my_server
 {
-  using namespace std; // For time_t, time and ctime;
-  time_t now = time(0);
-  return ctime(&now);
-}
-
-void beginConsoleConnection(tcp::socket& sock, boost::system::error_code err)
-{
-	for (;;)
+	public:
+	my_server(boost::asio::io_context& ioc, size_t port)
+	: ioc_(ioc),
+	  acceptor_(ioc_, tcp::endpoint(tcp::v4(), port))
 	{
-		std::array<char, 1> ch;
-		sock.read_some(boost::asio::buffer(ch), err);
-		if (err == boost::asio::error::eof)
-			break;
-		if (ch[0] == 4)
-			break;
-		std::cout << ch[0];
+		start_accept();	
 	}
-}
-
-void daytimeHandler(boost::asio::io_context& io_context,
-					tcp::acceptor& acceptor)
-{
-	for (;;)
+	private:
+	boost::asio::io_context& ioc_;
+	tcp::acceptor acceptor_;
+	void start_accept()
 	{
-		tcp::socket socket(io_context);
-		acceptor.accept(socket);
-		std::cout << "Daytime connected\n\n";
-
-		std::string message = make_daytime_string();
-
-		boost::system::error_code ignored_error;
-		boost::asio::write(socket, boost::asio::buffer(message), ignored_error);
-		std::cout << "\nDaytime connection refused\n\n";
-	}		
-}
-
-void consoleHandler(boost::asio::io_context& io_context,
-					tcp::acceptor& acceptor)
-{
-	for (;;)
-	{
-		tcp::socket socket(io_context);
-		acceptor.accept(socket);
-		std::cout << "Console connected\n\n";
-
-		boost::system::error_code error;
-		beginConsoleConnection(socket, error);
-		std::cout << "\nConsole connection refused\n\n";
+		my_connection::pointer new_connection =
+			my_connection::create(ioc_);
+		acceptor_.async_accept(new_connection->socket(), boost::bind(&my_server::handle_accept, this, new_connection, boost::asio::placeholders::error));
 	}
-}
+	void handle_accept(my_connection::pointer con, const boost::system::error_code& error)
+	{
+		if (!error) {
+			con->handle_server_connect();
+		}
+
+		start_accept();
+	}
+};
 
 int main()
 {
-  try
-  {
-    boost::asio::io_context io_context;
-
-    tcp::acceptor acceptor1(io_context, tcp::endpoint(tcp::v4(), 1500));
-	tcp::acceptor acceptor2(io_context, tcp::endpoint(tcp::v4(), 1501));
-
-	std::thread daytimeThread([&]{ daytimeHandler(io_context, acceptor1); });
-	consoleHandler(io_context, acceptor2);
-  }
-  catch (std::exception& e)
-  {
-    std::cerr << e.what() << std::endl;
-  }
-
-  return 0;
+	try
+	{
+		boost::asio::io_context ioc;
+		my_server server(ioc, 1025);
+		
+		ioc.run();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	return 0;
 }

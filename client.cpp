@@ -1,46 +1,22 @@
-#include <array>
-#include <iostream>
-#include <boost/asio.hpp>
+#include "utils.h"
 
-using boost::asio::ip::tcp;
-
-int main(int argc, char* argv[])
+int main()
 {
-  try
-  {
-    if (argc != 2) 
-	{
-      std::cerr << "Usage: client <host>" << std::endl;
-      return 1;
-    }
-
-    boost::asio::io_context io_context;
-
-    tcp::resolver resolver(io_context);
-    tcp::resolver::results_type endpoints =
-    resolver.resolve(argv[1], "1500");
-    tcp::socket socket(io_context);
+	boost::asio::io_context ioc;
+	tcp::resolver resolver(ioc);
+	tcp::resolver::results_type endpoints = resolver.resolve(tcp::endpoint(boost::asio::ip::make_address("127.0.0.1"), 1025));
+	tcp::socket socket(ioc);
 	boost::asio::connect(socket, endpoints);
+	boost::array<char, 128> buf;
 
-    for (;;)
-    {
-		std::array<char, 128> buf;
-    	boost::system::error_code error;
+	for (;;)
+	{
+		std::cin.getline(buf.data(), 128, '\n');
+		if (strcmp(buf.data(), "end") == 0)
+			break;
 		
-    	size_t len = socket.read_some(boost::asio::buffer(buf), error);
+		socket.write_some(boost::asio::buffer(buf.data(), std::cin.gcount()));
+	}
 
-    	if (error == boost::asio::error::eof)
-    		break; // Connection closed cleanly by peer.
-    	else if (error)
-        	throw boost::system::system_error(error); // Some other error.
-
-      	std::cout.write(buf.data(), len);
-    }
-  }
-  catch (std::exception& e)
-  {
-    std::cerr << e.what() << std::endl;
-  }
-
-  return 0;
+	return 0;	
 }
