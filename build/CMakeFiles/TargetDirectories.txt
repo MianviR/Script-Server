@@ -1,0 +1,4 @@
+/home/mianvi/projects/Script-Server/build/CMakeFiles/server.dir
+/home/mianvi/projects/Script-Server/build/CMakeFiles/client.dir
+/home/mianvi/projects/Script-Server/build/CMakeFiles/edit_cache.dir
+/home/mianvi/projects/Script-Server/build/CMakeFiles/rebuild_cache.dir

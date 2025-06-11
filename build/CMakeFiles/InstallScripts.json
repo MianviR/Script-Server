@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/mianvi/projects/Script-Server/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
