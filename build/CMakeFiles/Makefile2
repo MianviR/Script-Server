@@ -65,11 +65,13 @@ CMAKE_BINARY_DIR = /home/mianvi/projects/Script-Server/build
 # The main recursive "all" target.
 all: CMakeFiles/server.dir/all
 all: CMakeFiles/client.dir/all
+all: CMakeFiles/server_beast.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/server.dir/codegen
 codegen: CMakeFiles/client.dir/codegen
+codegen: CMakeFiles/server_beast.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -79,6 +81,7 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/server.dir/clean
 clean: CMakeFiles/client.dir/clean
+clean: CMakeFiles/server_beast.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -144,6 +147,38 @@ CMakeFiles/client.dir/codegen:
 CMakeFiles/client.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/clean
 .PHONY : CMakeFiles/client.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/server_beast.dir
+
+# All Build rule for target.
+CMakeFiles/server_beast.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_beast.dir/build.make CMakeFiles/server_beast.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_beast.dir/build.make CMakeFiles/server_beast.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mianvi/projects/Script-Server/build/CMakeFiles --progress-num=5,6 "Built target server_beast"
+.PHONY : CMakeFiles/server_beast.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/server_beast.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mianvi/projects/Script-Server/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/server_beast.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mianvi/projects/Script-Server/build/CMakeFiles 0
+.PHONY : CMakeFiles/server_beast.dir/rule
+
+# Convenience name for target.
+server_beast: CMakeFiles/server_beast.dir/rule
+.PHONY : server_beast
+
+# codegen rule for target.
+CMakeFiles/server_beast.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_beast.dir/build.make CMakeFiles/server_beast.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mianvi/projects/Script-Server/build/CMakeFiles --progress-num=5,6 "Finished codegen for target server_beast"
+.PHONY : CMakeFiles/server_beast.dir/codegen
+
+# clean rule for target.
+CMakeFiles/server_beast.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_beast.dir/build.make CMakeFiles/server_beast.dir/clean
+.PHONY : CMakeFiles/server_beast.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
