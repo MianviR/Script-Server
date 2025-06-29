@@ -96,6 +96,9 @@ server_beast_EXTERNAL_OBJECTS =
 server_beast: CMakeFiles/server_beast.dir/server_beast.cpp.o
 server_beast: CMakeFiles/server_beast.dir/build.make
 server_beast: CMakeFiles/server_beast.dir/compiler_depend.ts
+server_beast: /home/mianvi/libs/cpp/boost_1_88_0/stage/lib/libboost_filesystem.so.1.88.0
+server_beast: /home/mianvi/libs/cpp/boost_1_88_0/stage/lib/libboost_system.so.1.88.0
+server_beast: /home/mianvi/libs/cpp/boost_1_88_0/stage/lib/libboost_atomic.so.1.88.0
 server_beast: CMakeFiles/server_beast.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/mianvi/projects/Script-Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable server_beast"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server_beast.dir/link.txt --verbose=$(VERBOSE)

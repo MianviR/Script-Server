@@ -1,13 +1,61 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>New script</title>
-	</head>
-	<body>
-		<form method="get">
-			<label for="fname">Script name</label>
-			<input type="text" id="scrName" name="scrName"><br>
-			<input type="submit" value="Submit">
-		</form>
-	</body>
+  <head>
+    <title>New script</title>
+  </head>
+  <body>
+    <form id="myForm" method="post" enctype="text/plain">
+      <table>
+        <tr>
+          <td>
+            <label for="scrName">Script name</label>
+          </td>
+          <td>
+			<div style="display: flex; align-items: center;">
+            <input
+              type="text"
+              id="scrName"
+              name="scrName"
+              value="{{ default(scrName, "") }}"
+              required
+              style="width:200px;"
+            />
+			{% if default(picked, false) %}
+              <span style="color:red; margin-left: 8px;">Already used</span>
+            {% endif %}
+			</div>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="scrText">Text</label></td>
+          <td>
+            <textarea
+              id="scrText"
+              name="scrText"
+              rows="5"
+              style="resize:none; width:500px; height:500px; font-size:15px;"
+            >{{ default(scrText, "") }}</textarea>
+          </td>
+        </tr>
+      </table>
+      <input type="hidden" name="payload" id="payload">
+      <input type="submit" value="Submit">
+    </form>
+
+    <script>
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (e) {
+          const data = {
+            scrName: document.getElementById("scrName").value,
+            scrText: document.getElementById("scrText").value
+          };
+
+          document.getElementById("payload").value = JSON.stringify(data);
+
+          document.getElementById("scrName").removeAttribute("name");
+          document.getElementById("scrText").removeAttribute("name");
+        });
+    </script>
+  </body>
 </html>

@@ -4,10 +4,39 @@
 		<title>New script</title>
 	</head>
 	<body>
-		<form method="get">
-			<label for="fname">Script name</label>
-			<input type="text" id="scrName" name="scrName"><br>
+		<form id="myForm" action="/newScript" method="post" enctype="text/plain">
+			<table>
+				<tr>
+					<td><label for="scrName">Script name</label></td>
+					<td><input type="text" id="scrName" name="scrName" value={{ scrName }} required style="width: 200px;"></td>
+				</tr>
+				<tr>
+					<td><label for="scrText">Text</label></td>
+					<td><textarea id="scrText" name="scrText" rows="5" style="resize :none; width: 500px; height: 500px; font-size: 15px;">{{ scrText }}</textarea><td>
+				</tr>
+			</table>
+			<input type="hidden" name="payload" id="payload">
 			<input type="submit" value="Submit">
 		</form>
+
+		<script>
+			function on_post(e) {
+
+				const data = {
+					scrName: document.getElementById("scrName").value,
+					scrText: document.getElementById("scrText").value
+				};
+
+				document.getElementById("payload").value = JSON.stringify(data);
+
+				document.getElementById("scrName").removeAttribute("name");
+				document.getElementById("scrText").removeAttribute("name");
+			};
+
+			
+			document.addEventListener("DOMContentLoaded", () => {
+				document.getElementById("myForm").addEventListener("submit", on_post);
+			});
+		</script>
 	</body>
 </html>

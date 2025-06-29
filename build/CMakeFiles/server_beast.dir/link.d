@@ -3,6 +3,9 @@ server_beast: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/crtbeginS.o \
   CMakeFiles/server_beast.dir/server_beast.cpp.o \
+  /home/mianvi/libs/cpp/boost_1_88_0/stage/lib/libboost_filesystem.so.1.88.0 \
+  /home/mianvi/libs/cpp/boost_1_88_0/stage/lib/libboost_system.so.1.88.0 \
+  /home/mianvi/libs/cpp/boost_1_88_0/stage/lib/libboost_atomic.so.1.88.0 \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/libm.so \
@@ -38,6 +41,12 @@ server_beast: \
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/crtbeginS.o:
 
 CMakeFiles/server_beast.dir/server_beast.cpp.o:
+
+/home/mianvi/libs/cpp/boost_1_88_0/stage/lib/libboost_filesystem.so.1.88.0:
+
+/home/mianvi/libs/cpp/boost_1_88_0/stage/lib/libboost_system.so.1.88.0:
+
+/home/mianvi/libs/cpp/boost_1_88_0/stage/lib/libboost_atomic.so.1.88.0:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/../../../../lib/libstdc++.so:
 
