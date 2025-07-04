@@ -114,7 +114,7 @@ void runScript(const char* name) {
 			break;
 		}
 		default: 
-			sleep(2);	
+			sleep(1);	
 			break;
 	}
 }
@@ -124,8 +124,6 @@ void deleteScript(const char* name) {
 	sprintf(path, "scripts/%s", name);
 	std::remove(path);
 }
-
-
 
 void get_query(http::request<http::string_body>& req, std::string* query = nullptr, std::string* path = nullptr) {
 	std::string uri = req.target();
